@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title><%= title %></title>
+  </head>
+  <body>
+
+     <div class="container">
+      <div class="row">
+       <% if(success!=''){%>
+        <div class="alert alert-success" role="alert">
+            <strong>success!</strong><%= success%>
+         </div>
+        <% } %>
+        <h1>Filter Employee Records</h1>
+        <div class="col-md-12">
+          <form action="/search/" id="employeeForm" class="form-horizontal" method="post">
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="name" class="col-md-12 control-label">By Name</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" name="fltrName" placeholder="Serach by Name">
+                    </div>
+                    
+                 </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                    <label for="email" class="col-md-12 control-label">By Email</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" name="fltrEmail" placeholder="Search by email">
+                    </div>
+                    
+                 </div>
+              </div>
+             
+
+              <div class="col-md-3">
+                <div class="form-group">
+                    <label for="emptype" class="col-md-12 control-label">Employee Type</label>
+                    <div class="col-md-12">
+                      <select name="fltremptype" id="" class="form-control">
+                        <option value="hourly">Hourly</option>
+                        <option value="fixed">Fixed</option>
+                      </select>
+                    </div>
+                 </div>
+               </div>
+
+               <div class="form-grop">
+                  <label for="email" class="col-md-12 control-label">&nbsp;</label>
+                  <div class="col-md-3">
+                     <input type="submit" type="button" class=" form-control btn btn-primary" name="submit" value="Submit">
+                    
+                    </div>
+
+                </div>
+
+               
+              </div>
+
+
+          </form>
+
+        </div>
+
+      </div>
+      
+    </div>
+
+    <h1><%= title %></h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Emp Type</th>
+          <th>Hourly Rate</th>
+          <th>Total Hour</th>
+          <th>Total Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+    
+      <%if (records.length > 0){%>
+      <% records.forEach(function(row){%>
+      <tr>
+        <td><%= row.name %></td>
+        <td><%= row.email %></td>
+        <td><%= row.etype %></td>
+        <td><%= row.hourlyrate %></td>
+        <td><%= row.totalHour %></td>
+        <td><%= row.total %></td>
+        <td><a class="btn btn-primary btn-xs" href="/edit/<%= row._id %>"><i class="fa fa-edit"></i></a>
+        <a class="btn btn-danger btn-xs" href="/delete/<%= row._id %>"><i class="fa fa-trash"></i></a></td>
+      </tr>
+
+      <% })}else{%>
+
+        <tr>
+          <td colspan="6">No Record Found</td>
+        </tr>
+       <% } %>
+
+    </table>
+
+    <div class="container">
+      <div class="row">
+        <div id="signupbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-2" >
+          <div class=" panel panel-info">
+            <div class="panel-heading">
+              <div class="panel-title">Employee Details Form</div>
+              <div style="float:right ;font-size:85% ;position:relative;top:-10px"></div>
+          </div>
+              <div class="panel-body">
+                <form action="/" class="form-horizontal" role="form" method="post" >
+
+                  <div></div>
+
+
+                  <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Name</label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" name="uname" placeholder="Enter your Name">
+                    </div>
+                    
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email" class="col-md-3 control-label">Email</label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" name="email" placeholder="Enter your email address">
+                    </div>
+                    
+                  </div>
+
+                  
+                  <div class="form-group">
+                    <label for="emptype" class="col-md-3 control-label">Employee Type</label>
+                    <div class="col-md-9">
+                      <select name="emptype" id="" class="form-control">
+                        <option value="hourly">Hourly</option>
+                        <option value="fixed">Fixed</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="thour" class="col-md-3 control-label">Hourly Rate</label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" name="Hrate" placeholder="Enter total Hour">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="thour" class="col-md-3 control-label">Total Hour</label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" name="Thour" placeholder="Enter total Hour">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                      <input type="submit" type="button" class="btn btn-info" name="submit" value="Submit">
+                    </div>
+                  </div>
+                  
+                </form>
+
+              </div>
+
+          </div>
+
+        </div>
+        
+      </div>
+
+    </div>
+  </body>
+</html>

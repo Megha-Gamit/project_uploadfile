@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <title><%= title %></title>
+</head>
+<body>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div id="signupbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-2" >
+          <div class=" panel panel-info">
+            <div class="panel-heading">
+              <div class="panel-title"><%= title %></div>
+              <div style="float:right ;font-size:85% ;position:relative;top:-10px"></div>
+          </div>
+              <div class="panel-body">
+                <form action="/update" class="form-horizontal" role="form" method="post" >
+
+                    <input type="hidden" name="id" value="<%= records._id%>">
+
+            
+                  <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Name</label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" name="uname" placeholder="Enter your Name" value="<%= records.name%>">
+                    </div>
+                    
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email" class="col-md-3 control-label">Email</label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" name="email" placeholder="Enter your email address" value="<%= records.email%>">
+                    </div>
+                    
+                  </div>
+
+                  
+                  <div class="form-group">
+                    <label for="emptype" class="col-md-3 control-label">Employee Type</label>
+                    <div class="col-md-9">
+                      <select name="emptype" id="" class="form-control">
+                        <option value="Hourly" <% if(records.etype=="Hourly"){%>Selcted <%}%>>Hourly</option>
+                        <option value="Fixed" <% if(records.etype=="Fixed"){%>Selcted <%}%>>Fixed</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="thour" class="col-md-3 control-label">Hourly Rate</label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" name="Hrate" placeholder="Enter total Hour" value="<%= records.hourlyrate %>">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="thour" class="col-md-3 control-label">Total Hour</label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" name="Thour" placeholder="Enter total Hour" value="<%= records.totalHour%>">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                      <input type="submit" type="button" class="btn btn-info" name="submit" value="Submit">
+                    </div>
+                  </div>
+                  
+                </form>
+
+              </div>
+
+          </div>
+
+        </div>
+        
+      </div>
+
+    </div>
+
+</body>
+</html>
